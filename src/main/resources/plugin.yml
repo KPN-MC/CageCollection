@@ -1,0 +1,10 @@
+name: CageCollection
+version: '1.0.0'
+main: dev.ev1dent.cageCollection.CageCollection
+api-version: '1.20'
+commands:
+  Cage:
+    aliases:
+      - spawners
+      - cages
+    usage: /<command> <give/set> <player> <mob>
