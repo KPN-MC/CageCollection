@@ -5,7 +5,6 @@ import dev.ev1dent.cageCollection.CCMain;
 import dev.ev1dent.cageCollection.Utilities.SpawnerBuilder;
 import dev.ev1dent.cageCollection.Utilities.Utils;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
