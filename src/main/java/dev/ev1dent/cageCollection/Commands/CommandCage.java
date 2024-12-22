@@ -1,5 +1,6 @@
 package dev.ev1dent.cageCollection.Commands;
 
+import dev.ev1dent.cageCollection.CCMain;
 import dev.ev1dent.cageCollection.Utilities.SpawnerBuilder;
 import dev.ev1dent.cageCollection.Utilities.Utils;
 import org.bukkit.Bukkit;
@@ -13,6 +14,10 @@ import org.jetbrains.annotations.NotNull;
 public class CommandCage implements CommandExecutor {
 
     Utils Utils = new Utils();
+    CCMain plugin;
+    public CommandCage(CCMain plugin){
+        this.plugin = plugin;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
@@ -31,9 +36,9 @@ public class CommandCage implements CommandExecutor {
         switch (action){
             case "give" -> {
                 String type = args[2];
-                ItemStack spawner = new SpawnerBuilder()
-                        .setMobType(type)
-                        .setDisplayName()
+                ItemStack spawner = new SpawnerBuilder(plugin)
+//                        .setMobType(type)
+//                        .setDisplayName()
                         .build();
 
             }

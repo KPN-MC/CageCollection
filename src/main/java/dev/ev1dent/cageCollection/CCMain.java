@@ -1,27 +1,25 @@
 package dev.ev1dent.cageCollection;
 
+import dev.ev1dent.cageCollection.events.SpawnerBreakEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CCMain extends JavaPlugin {
 
-    public CCMain plugin;
-
     @Override
     public void onEnable() {
-        plugin = this;
+        registerListeners();
+        registerCommands();
     }
-
-    @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
 
     public void registerCommands(){
-
+        addTabCompletion();
     }
 
     public void registerListeners(){
-
+        Bukkit.getPluginManager().registerEvents(new SpawnerBreakEvent(this), this);
     }
 
 
