@@ -1,4 +1,4 @@
-package dev.ev1dent.cageCollection.Utilities;
+package dev.ev1dent.cagecollection.utilities;
 
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.Component;

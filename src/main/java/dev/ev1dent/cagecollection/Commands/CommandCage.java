@@ -1,8 +1,8 @@
-package dev.ev1dent.cageCollection.Commands;
+package dev.ev1dent.cagecollection.commands;
 
-import dev.ev1dent.cageCollection.CCMain;
-import dev.ev1dent.cageCollection.Utilities.SpawnerBuilder;
-import dev.ev1dent.cageCollection.Utilities.Utils;
+import dev.ev1dent.cagecollection.CCMain;
+import dev.ev1dent.cagecollection.utilities.SpawnerBuilder;
+import dev.ev1dent.cagecollection.utilities.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;

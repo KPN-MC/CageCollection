@@ -1,9 +1,8 @@
-package dev.ev1dent.cageCollection.Events;
+package dev.ev1dent.cagecollection.events;
 
-
-import dev.ev1dent.cageCollection.CCMain;
-import dev.ev1dent.cageCollection.Utilities.SpawnerBuilder;
-import dev.ev1dent.cageCollection.Utilities.Utils;
+import dev.ev1dent.cagecollection.CCMain;
+import dev.ev1dent.cagecollection.utilities.SpawnerBuilder;
+import dev.ev1dent.cagecollection.utilities.Utils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;

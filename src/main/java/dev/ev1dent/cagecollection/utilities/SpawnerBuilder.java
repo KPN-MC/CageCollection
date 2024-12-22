@@ -1,7 +1,6 @@
-package dev.ev1dent.cageCollection.Utilities;
+package dev.ev1dent.cagecollection.utilities;
 
-import dev.ev1dent.cageCollection.CCMain;
-import net.kyori.adventure.text.Component;
+import dev.ev1dent.cagecollection.CCMain;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
