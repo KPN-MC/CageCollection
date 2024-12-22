@@ -40,6 +40,7 @@ public class SpawnerBuilder {
             data.set(new NamespacedKey(CCInstance(), "mob-type"), PersistentDataType.STRING, mobType);
 
 
+
             itemStack.setItemMeta(meta);
         }
         return itemStack;
