@@ -4,12 +4,15 @@ import dev.ev1dent.cageCollection.CCMain;
 import dev.ev1dent.cageCollection.Utilities.SpawnerBuilder;
 import dev.ev1dent.cageCollection.Utilities.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
 
 public class CommandCage implements CommandExecutor {
 
@@ -35,18 +38,41 @@ public class CommandCage implements CommandExecutor {
 
         switch (action){
             case "give" -> {
-                String type = args[2];
-                ItemStack spawner = new SpawnerBuilder(plugin)
-//                        .setMobType(type)
-//                        .setDisplayName()
+                String mobType = args[2];
+                ItemStack spawnerItem = new SpawnerBuilder(plugin)
+                        .setDisplayName("<green>" + mobType + " Spawner</green>")
+                        .setMobType(mobType)
                         .build();
+
+                HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(spawnerItem);
+                if (!hashMap.isEmpty()) {
+                    player.getWorld().dropItem(player.getLocation(), spawnerItem);
+                }
 
             }
             case "set" ->{
                 // set spawner in hand
-                if(!(sender instanceof Player player)) {
+                if(!(sender instanceof Player p)) {
+                    sender.sendMessage(Utils.formatMM("<red>You must be a player to use this command!"));
                     return false;
                 }
+
+                ItemStack item = p.getInventory().getItemInMainHand();
+                if(item == null || item.getType() == Material.AIR) {
+                    sender.sendMessage(Utils.formatMM("<red>You are not holding any item!"));
+                    return false;
+                }
+
+                String mobType = args[2];
+                ItemStack newItem = new SpawnerBuilder(plugin)
+                        .setDisplayName("<green>" + mobType + " Spawner</green>")
+                        .setMobType(mobType)
+                        .build();
+                HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(newItem);
+                if (!hashMap.isEmpty()) {
+                    player.getWorld().dropItem(player.getLocation(), newItem);
+                }
+
             }
         }
 
