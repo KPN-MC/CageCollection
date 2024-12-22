@@ -1,6 +1,6 @@
 package dev.ev1dent.cageCollection;
 
-import dev.ev1dent.cageCollection.events.SpawnerBreakEvent;
+import dev.ev1dent.cageCollection.Events.SpawnerBreakEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

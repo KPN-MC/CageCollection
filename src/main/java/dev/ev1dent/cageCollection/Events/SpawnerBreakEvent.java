@@ -1,4 +1,4 @@
-package dev.ev1dent.cageCollection.events;
+package dev.ev1dent.cageCollection.Events;
 
 
 import dev.ev1dent.cageCollection.CCMain;
