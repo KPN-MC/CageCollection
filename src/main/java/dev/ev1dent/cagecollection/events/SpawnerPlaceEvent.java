@@ -28,8 +28,6 @@ public class SpawnerPlaceEvent implements Listener {
         PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
         String mobType = container.get(new NamespacedKey(plugin, "mobType"), PersistentDataType.STRING);
 
-        System.out.println(mobType);
-
         CreatureSpawner spawner = (CreatureSpawner) event.getBlockPlaced().getState();
         try{
             spawner.setSpawnedType(EntityType.valueOf(mobType));
