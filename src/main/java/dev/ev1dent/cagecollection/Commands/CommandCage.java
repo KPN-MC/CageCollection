@@ -32,7 +32,7 @@ public class CommandCage implements CommandExecutor {
         String action = args[0].toLowerCase();
         Player player = Bukkit.getPlayer(args[1]);
         if(player == null) {
-            sender.sendMessage(Utils.formatMM("<red>Player not found."));
+            sender.sendMessage(Utils.errorMM("Player not found."));
             return true;
         }
 
@@ -54,20 +54,24 @@ public class CommandCage implements CommandExecutor {
 
             case "set" ->{
                 if(!(sender instanceof Player p)) {
-                    sender.sendMessage(Utils.formatMM("<red>You must be a player to use this command!"));
+                    sender.sendMessage(Utils.errorMM("You must be a player to use this command!"));
                     return true;
                 }
 
                 ItemStack item = p.getInventory().getItemInMainHand();
 
                 if(item.getType() == Material.AIR) {
-                    sender.sendMessage(Utils.formatMM("<red>You are not holding any item!"));
+                    sender.sendMessage(Utils.errorMM("You are not holding any item!"));
                     return true;
                 }
 
                 if(item.getType() != Material.SPAWNER){
-                    sender.sendMessage(Utils.formatMM("<red>You are not holding a spawner!"));
+                    sender.sendMessage(Utils.errorMM("You are not holding a spawner!"));
                     return true;
+                }
+
+                if(!Utils.getEntityNames(Utils.getLivingEntities()).contains(mobType)){
+                    sender.sendMessage(Utils.errorMM("You are not holding a spawner!"));
                 }
 
                 ItemStack newItem = new SpawnerBuilder(plugin)
@@ -80,7 +84,7 @@ public class CommandCage implements CommandExecutor {
             }
 
             default -> {
-                sender.sendMessage(Utils.formatMM("<red>Invalid action!"));
+                sender.sendMessage(Utils.errorMM("Invalid action!"));
             }
         }
         return true;

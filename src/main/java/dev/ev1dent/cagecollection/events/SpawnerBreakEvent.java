@@ -38,7 +38,7 @@ public class SpawnerBreakEvent implements Listener {
         if (block.getType() != Material.SPAWNER) return;
         CreatureSpawner spawner = (CreatureSpawner) block.getState();
         if (!player.hasPermission("cagecollection.break")) {
-            player.sendMessage(Utils.formatMM("<dark_red> You do not have permission break spawners!"));
+            player.sendMessage(Utils.errorMM("You do not have permission break spawners!"));
             event.setCancelled(true);
             return;
         }
@@ -51,18 +51,18 @@ public class SpawnerBreakEvent implements Listener {
         }
 
         if(!hasAPickaxe(player)) {
-            player.sendMessage(Utils.formatMM("<dark_red>You need a pickaxe to break spawners!"));
+            player.sendMessage(Utils.errorMM("You need a pickaxe to break spawners!"));
             event.setCancelled(true);
             return;
         }
 
         if(!hasCorrectPickaxe(player)){
-            player.sendMessage(Utils.formatMM("<dark_red>You need a better pickaxe to break spawners!"));
+            player.sendMessage(Utils.errorMM("You need a better pickaxe to break spawners!"));
             event.setCancelled(true);
             return;
         }
         if(!hasCorrectEnchantments(player)){
-            player.sendMessage(Utils.formatMM("<dark_red>You need a Silk Touch pickaxe to collect spawners."));
+            player.sendMessage(Utils.errorMM("You need a Silk Touch pickaxe to collect spawners."));
             event.setCancelled(true);
             return;
         }
@@ -77,7 +77,7 @@ public class SpawnerBreakEvent implements Listener {
 
         HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(spawnerItem);
         if (!hashMap.isEmpty()) {
-            player.sendMessage(Utils.formatMM("<dark_red>Your inventory is full! Clear some space to break this spawner!"));
+            player.sendMessage(Utils.errorMM("Your inventory is full! Clear some space to break this spawner!"));
             event.setCancelled(true);
         }
 
