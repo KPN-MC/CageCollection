@@ -42,7 +42,7 @@ public class SpawnerBuilder {
 
             // PDC for mob type
             PersistentDataContainer data = meta.getPersistentDataContainer();
-            data.set(mobTypeKey, PersistentDataType.STRING, mobType);
+            data.set(mobTypeKey, PersistentDataType.STRING, mobType.toLowerCase());
 
             meta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
 
