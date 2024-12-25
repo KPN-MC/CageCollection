@@ -45,7 +45,13 @@ public class CommandCage implements CommandExecutor {
                     return true;
                 }
 
-                int quantity = args.length > 3 ? Integer.parseInt(args[3]) : 1;
+                int quantity;
+                try{
+                    quantity = Integer.parseInt(args[3]);
+                } catch (Exception e){
+                    sender.sendMessage(Utils.errorMM("Quantity must be an integer."));
+                    return true;
+                }
 
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
                         .setMobType(mobType)
@@ -97,5 +103,7 @@ public class CommandCage implements CommandExecutor {
 
         }
         return true;
+
+
     }
 }
