@@ -45,9 +45,11 @@ public class CommandCage implements CommandExecutor {
                     return true;
                 }
 
+                int quantity = args.length > 3 ? Integer.parseInt(args[3]) : 1;
+
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
                         .setMobType(mobType)
-                        .setSpawnerQuantity(args.length > 3 ? Integer.parseInt(args[3]) : 1)
+                        .setSpawnerQuantity(quantity)
                         .build();
 
                 HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(spawnerItem);
@@ -55,6 +57,7 @@ public class CommandCage implements CommandExecutor {
                 if (!hashMap.isEmpty()) {
                     player.getWorld().dropItem(player.getLocation(), spawnerItem);
                 }
+                sender.sendMessage(Utils.formatMM(String.format("Gave %s %s %s Spawner(s)", player.getName(), quantity, mobType)));
             }
 
             case "set" ->{
@@ -86,6 +89,7 @@ public class CommandCage implements CommandExecutor {
                         .build();
 
                 player.getInventory().setItemInMainHand(newItem);
+                sender.sendMessage(Utils.formatMM("Set spawner to " + mobType));
 
             }
 

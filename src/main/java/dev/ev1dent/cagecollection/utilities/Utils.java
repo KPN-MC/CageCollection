@@ -15,7 +15,7 @@ public class Utils {
         return MiniMessage.miniMessage().deserialize("<dark_red>" + s).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
     }
     public Component formatMM(String s){
-        return MiniMessage.miniMessage().deserialize(s).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
+        return MiniMessage.miniMessage().deserialize("<green>" + s).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
     }
 
     public List<EntityType> getLivingEntities() {
