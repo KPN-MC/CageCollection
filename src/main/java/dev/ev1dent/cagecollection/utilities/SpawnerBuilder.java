@@ -20,10 +20,16 @@ public class SpawnerBuilder {
     }
 
     private String mobType;
+    private int spawnerQuantity;
 
 
     public SpawnerBuilder setMobType(String mobType) {
         this.mobType = mobType;
+        return this;
+    }
+
+    public SpawnerBuilder setSpawnerQuantity(int spawnerQuantity) {
+        this.spawnerQuantity = spawnerQuantity;
         return this;
     }
 
@@ -42,6 +48,13 @@ public class SpawnerBuilder {
 
             //process the meta on item
             itemStack.setItemMeta(meta);
+
+            try {
+                itemStack.setAmount(spawnerQuantity);
+            } catch (Exception e) {
+                itemStack.setAmount(1);
+            }
+
         }
         return itemStack;
     }
