@@ -1,6 +1,6 @@
 name: CageCollection
 version: '1.0.0'
-main: dev.ev1dent.cageCollection.CageCollection
+main: dev.ev1dent.cagecollection.CCMain
 api-version: '1.20'
 commands:
   Cage:

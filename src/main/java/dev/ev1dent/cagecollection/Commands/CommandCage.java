@@ -1,4 +1,4 @@
-package dev.ev1dent.cagecollection.commands;
+package dev.ev1dent.cagecollection.Commands;
 
 import dev.ev1dent.cagecollection.CCMain;
 import dev.ev1dent.cagecollection.utilities.SpawnerBuilder;
