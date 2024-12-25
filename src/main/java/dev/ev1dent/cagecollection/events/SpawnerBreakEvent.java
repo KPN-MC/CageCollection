@@ -51,6 +51,7 @@ public class SpawnerBreakEvent implements Listener {
 
         // Get the type of mob in the spawner
         CreatureSpawner spawner = (CreatureSpawner) block.getState();
+        if(spawner.getSpawnedType() == null) return;
         String mobType = spawner.getSpawnedType().toString();
 
 
