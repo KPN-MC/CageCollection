@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SpawnerBreakEvent implements Listener {
 
@@ -74,7 +75,11 @@ public class SpawnerBreakEvent implements Listener {
                 .setSpawnerQuantity(1)
                 .build();
 
-        block.getWorld().dropItemNaturally(block.getLocation(), spawnerItem);
+        HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(spawnerItem);
+        if (!hashMap.isEmpty()) {
+            player.sendMessage(Utils.formatMM("<dark_red>Your inventory is full! Clear some space to break this spawner!"));
+            event.setCancelled(true);
+        }
 
         event.setDropItems(false);
         event.setExpToDrop(0);
