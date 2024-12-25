@@ -7,4 +7,5 @@ commands:
     aliases:
       - spawners
       - cages
+      - spawner
     usage: /<command> <give/set> <player> <mob>
