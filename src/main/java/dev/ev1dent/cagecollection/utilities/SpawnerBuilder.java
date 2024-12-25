@@ -49,11 +49,7 @@ public class SpawnerBuilder {
             //process the meta on item
             itemStack.setItemMeta(meta);
 
-            try {
-                itemStack.setAmount(spawnerQuantity);
-            } catch (Exception e) {
-                itemStack.setAmount(1);
-            }
+            itemStack.setAmount(spawnerQuantity);
 
         }
         return itemStack;
