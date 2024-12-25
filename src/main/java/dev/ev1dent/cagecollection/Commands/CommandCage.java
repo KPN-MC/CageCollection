@@ -40,7 +40,6 @@ public class CommandCage implements CommandExecutor {
             case "give" -> {
                 String mobType = args[2];
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
-                        .setDisplayName("<green>" + mobType + " Spawner</green>")
                         .setMobType(mobType)
                         .build();
 
@@ -65,7 +64,6 @@ public class CommandCage implements CommandExecutor {
 
                 String mobType = args[2];
                 ItemStack newItem = new SpawnerBuilder(plugin)
-                        .setDisplayName("<green>" + mobType + " Spawner</green>")
                         .setMobType(mobType)
                         .build();
                 HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(newItem);
