@@ -9,3 +9,4 @@ commands:
       - cages
       - spawner
     usage: /<command> <give/set> <player> <mob>
+    permission: 'cagecollection.command.cage'
