@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.util.StringUtil;
 
@@ -13,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CageTC implements TabCompleter {
     private final String[] inputArgs = { "give", "set"};
@@ -36,7 +36,7 @@ public class CageTC implements TabCompleter {
     }
 
     private List<EntityType> getLivingEntities() {
-        return List.of(EntityType.values()).stream()
+        return Stream.of(EntityType.values())
                 .filter(this::isPassive)
                 .collect(Collectors.toList());
     }
