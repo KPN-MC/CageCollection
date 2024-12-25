@@ -40,6 +40,11 @@ public class CommandCage implements CommandExecutor {
         switch (action){
             case "give" -> {
 
+                if(!Utils.getEntityNames(Utils.getLivingEntities()).contains(mobType)){
+                    sender.sendMessage(Utils.errorMM("That is not a valid Entity."));
+                    return true;
+                }
+
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
                         .setMobType(mobType)
                         .setSpawnerQuantity(args.length > 3 ? Integer.parseInt(args[3]) : 1)
@@ -71,7 +76,8 @@ public class CommandCage implements CommandExecutor {
                 }
 
                 if(!Utils.getEntityNames(Utils.getLivingEntities()).contains(mobType)){
-                    sender.sendMessage(Utils.errorMM("You are not holding a spawner!"));
+                    sender.sendMessage(Utils.errorMM("That is not a valid Entity."));
+                    return true;
                 }
 
                 ItemStack newItem = new SpawnerBuilder(plugin)
