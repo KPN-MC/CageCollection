@@ -50,8 +50,9 @@ public class SpawnerBreakEvent implements Listener {
         }
 
         if(!hasAPickaxe(player)) {
-            player.sendMessage(Utils.formatMM("<dark_red> You need a pickaxe to break spawners!"));
+            player.sendMessage(Utils.formatMM("<dark_red>You need a pickaxe to break spawners!"));
             event.setCancelled(true);
+            return;
         }
 
         if(!hasCorrectPickaxe(player)){
@@ -60,7 +61,7 @@ public class SpawnerBreakEvent implements Listener {
             return;
         }
         if(!hasCorrectEnchantments(player)){
-            player.sendMessage("<dark_red>You need a Silk Touch pickaxe to collect spawners.");
+            player.sendMessage(Utils.formatMM("<dark_red>You need a Silk Touch pickaxe to collect spawners."));
             event.setCancelled(true);
             return;
         }
