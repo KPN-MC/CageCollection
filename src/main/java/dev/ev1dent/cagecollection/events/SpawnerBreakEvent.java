@@ -1,8 +1,11 @@
 package dev.ev1dent.cagecollection.events;
 
+import com.destroystokyo.paper.MaterialTags;
 import dev.ev1dent.cagecollection.CCMain;
 import dev.ev1dent.cagecollection.utilities.SpawnerBuilder;
 import dev.ev1dent.cagecollection.utilities.Utils;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
@@ -24,7 +27,6 @@ public class SpawnerBreakEvent implements Listener {
         this.plugin = plugin;
     }
 
-
     @EventHandler
     public void onSpawnerBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
@@ -33,11 +35,25 @@ public class SpawnerBreakEvent implements Listener {
         if(event.isCancelled()) return;
 
         if (block.getType() != Material.SPAWNER) return;
-        if (!player.hasPermission("cagecollection.mine")) {
+        CreatureSpawner spawner = (CreatureSpawner) block.getState();
+        if (!player.hasPermission("cagecollection.break")) {
             player.sendMessage(Utils.formatMM("<dark_red> You do not have permission break spawners!"));
             event.setCancelled(true);
             return;
         }
+
+        if(isAdmin(player)){
+            Location loc = block.getLocation();
+            String coordinates  = loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
+            plugin.getLogger().warning("Admin: " + player.getName() + " Broke a " + spawner.getSpawnedType() + " spawner at " + coordinates);
+            return;
+        }
+
+        if(!hasAPickaxe(player)) {
+            player.sendMessage(Utils.formatMM("<dark_red> You need a pickaxe to break spawners!"));
+            event.setCancelled(true);
+        }
+
         if(!hasCorrectPickaxe(player)){
             player.sendMessage(Utils.formatMM("<dark_red>You need a better pickaxe to break spawners!"));
             event.setCancelled(true);
@@ -49,14 +65,10 @@ public class SpawnerBreakEvent implements Listener {
             return;
         }
 
-        // Get the type of mob in the spawner
-        CreatureSpawner spawner = (CreatureSpawner) block.getState();
         if(spawner.getSpawnedType() == null) return;
         String mobType = spawner.getSpawnedType().toString();
 
-
         ItemStack spawnerItem = new SpawnerBuilder(plugin)
-                .setDisplayName("<green>" + mobType + " Spawner</green>")
                 .setMobType(mobType)
                 .build();
 
@@ -66,7 +78,12 @@ public class SpawnerBreakEvent implements Listener {
         event.setExpToDrop(0);
     }
 
-    public boolean hasCorrectPickaxe(Player player){
+    private boolean hasAPickaxe(Player player){
+        ItemStack item = player.getInventory().getItemInMainHand();
+        return MaterialTags.PICKAXES.isTagged(item.getType());
+    }
+
+    private boolean hasCorrectPickaxe(Player player){
         ItemStack tool = player.getInventory().getItemInMainHand();
 
         ArrayList<String> toolType = new ArrayList<>();
@@ -77,8 +94,14 @@ public class SpawnerBreakEvent implements Listener {
         return toolType.contains(tool.getType().toString());
     }
 
-    public boolean hasCorrectEnchantments(Player player){
+    private boolean hasCorrectEnchantments(Player player){
         ItemStack tool = player.getInventory().getItemInMainHand();
         return tool.containsEnchantment(Enchantment.SILK_TOUCH);
+    }
+
+    private boolean isAdmin(Player player){
+        return player.isSneaking()
+                && player.hasPermission("cagecollection.break.override")
+                && player.getGameMode() == GameMode.CREATIVE;
     }
 }
