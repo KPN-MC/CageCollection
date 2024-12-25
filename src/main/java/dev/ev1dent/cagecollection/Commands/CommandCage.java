@@ -36,18 +36,18 @@ public class CommandCage implements CommandExecutor {
             return true;
         }
 
+        String mobType = args[2];
+
         switch (action){
             case "give" -> {
-                String mobType = args[2];
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
                         .setMobType(mobType)
+                        .setSpawnerQuantity(args.length > 3 ? Integer.parseInt(args[3]) : 1)
                         .build();
-
                 HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(spawnerItem);
                 if (!hashMap.isEmpty()) {
                     player.getWorld().dropItem(player.getLocation(), spawnerItem);
                 }
-
             }
             case "set" ->{
                 // set spawner in hand
@@ -57,20 +57,19 @@ public class CommandCage implements CommandExecutor {
                 }
 
                 ItemStack item = p.getInventory().getItemInMainHand();
-                if(item == null || item.getType() == Material.AIR) {
+                if(item.getType() == Material.AIR) {
                     sender.sendMessage(Utils.formatMM("<red>You are not holding any item!"));
                     return false;
                 }
 
-                String mobType = args[2];
                 ItemStack newItem = new SpawnerBuilder(plugin)
                         .setMobType(mobType)
                         .build();
-                HashMap<Integer, ItemStack> hashMap = player.getInventory().addItem(newItem);
-                if (!hashMap.isEmpty()) {
-                    player.getWorld().dropItem(player.getLocation(), newItem);
-                }
 
+                player.getInventory().setItemInMainHand(newItem);
+            }
+            default -> {
+                sender.sendMessage(Utils.formatMM("<red>Invalid action!"));
             }
         }
 
