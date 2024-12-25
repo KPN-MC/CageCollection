@@ -1,11 +1,14 @@
 package dev.ev1dent.cagecollection;
 
 import dev.ev1dent.cagecollection.Commands.CommandCage;
+import dev.ev1dent.cagecollection.Commands.tabCompletion.CageTC;
 import dev.ev1dent.cagecollection.events.NoSpawnEggs;
 import dev.ev1dent.cagecollection.events.SpawnerBreakEvent;
 import dev.ev1dent.cagecollection.events.SpawnerPlaceEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class CCMain extends JavaPlugin {
 
@@ -18,7 +21,7 @@ public final class CCMain extends JavaPlugin {
     }
 
     public void registerCommands(){
-        this.getCommand("cage").setExecutor(new CommandCage(this));
+        Objects.requireNonNull(this.getCommand("cage")).setExecutor(new CommandCage(this));
         addTabCompletion();
     }
 
@@ -30,6 +33,6 @@ public final class CCMain extends JavaPlugin {
 
 
     public void addTabCompletion() {
-
+       Objects.requireNonNull(this.getCommand("cage")).setTabCompleter(new CageTC());
     }
 }
