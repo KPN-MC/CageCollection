@@ -5,12 +5,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CageTC implements TabCompleter {
     private final String[] inputArgs = { "give", "set"};
@@ -28,24 +30,28 @@ public class CageTC implements TabCompleter {
                     return null;
                 }
                 case 3:
-                    List<String> livingEntityNames = getAllLivingEntityNames();
-                    StringUtil.copyPartialMatches(args[2], Arrays.asList(inputArgs), livingEntityNames);
-                    Collections.sort(completions);
-                    return completions;
+                    return getEntityNames(getLivingEntities());
             }
         return null;
     }
 
-    public static List<String> getAllLivingEntityNames() {
-        List<String> livingEntityNames = new ArrayList<>();
-        for (EntityType entityType : EntityType.values()) {
-            // Check if the EntityType is a living entity
-            if (entityType.getEntityClass() != null && LivingEntity.class.isAssignableFrom(entityType.getEntityClass())) {
-                // Add the name of the living entity to the list
-                livingEntityNames.add(entityType.name());
-            }
-        }
-
-        return livingEntityNames;
+    private List<EntityType> getLivingEntities() {
+        return List.of(EntityType.values()).stream()
+                .filter(this::isPassive)
+                .collect(Collectors.toList());
     }
+
+    private boolean isPassive(EntityType entityType) {
+        return entityType.getEntityClass() != null
+                && Mob.class.isAssignableFrom(entityType.getEntityClass());
+    }
+
+    private List<String> getEntityNames(List<EntityType> entities) {
+        return entities.stream()
+                .map(entity -> entity.name().toLowerCase())
+                .collect(Collectors.toList());
+    }
+
+
+
 }
