@@ -71,6 +71,7 @@ public class SpawnerBreakEvent implements Listener {
 
         ItemStack spawnerItem = new SpawnerBuilder(plugin)
                 .setMobType(mobType)
+                .setSpawnerQuantity(1)
                 .build();
 
         block.getWorld().dropItemNaturally(block.getLocation(), spawnerItem);
