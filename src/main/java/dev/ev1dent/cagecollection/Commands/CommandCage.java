@@ -89,9 +89,8 @@ public class CommandCage implements CommandExecutor {
 
             }
 
-            default -> {
-                sender.sendMessage(Utils.errorMM("Invalid action!"));
-            }
+            default -> sender.sendMessage(Utils.errorMM("Invalid action!"));
+
         }
         return true;
     }
