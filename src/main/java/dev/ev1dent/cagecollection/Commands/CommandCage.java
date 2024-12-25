@@ -49,8 +49,8 @@ public class CommandCage implements CommandExecutor {
                 try{
                     quantity = Integer.parseInt(args[3]);
                 } catch (Exception e){
-                    sender.sendMessage(Utils.errorMM("Quantity must be an integer."));
-                    return true;
+                    sender.sendMessage(Utils.errorMM("Quantity must be an integer, Defaulting to 1"));
+                    quantity = 1;
                 }
 
                 ItemStack spawnerItem = new SpawnerBuilder(plugin)
