@@ -38,13 +38,7 @@ public class CageTC implements TabCompleter {
 
     private List<EntityType> getLivingEntities() {
         return Stream.of(EntityType.values())
-                .filter(this::isPassive)
                 .collect(Collectors.toList());
-    }
-
-    private boolean isPassive(EntityType entityType) {
-        return entityType.getEntityClass() != null
-                && Mob.class.isAssignableFrom(entityType.getEntityClass());
     }
 
     private List<String> getEntityNames(List<EntityType> entities) {
