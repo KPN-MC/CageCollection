@@ -4,6 +4,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Mob;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class Utils {
 
     public List<EntityType> getLivingEntities() {
         return Stream.of(EntityType.values())
+                .filter(this::isLiving)
                 .collect(Collectors.toList());
     }
 
@@ -27,5 +29,10 @@ public class Utils {
         return entities.stream()
                 .map(entity -> entity.name().toLowerCase())
                 .collect(Collectors.toList());
+    }
+
+    private boolean isLiving(EntityType entityType) {
+        return entityType.getEntityClass() != null
+                && Mob.class.isAssignableFrom(entityType.getEntityClass());
     }
 }
