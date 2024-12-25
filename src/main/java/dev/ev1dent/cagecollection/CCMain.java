@@ -1,5 +1,6 @@
 package dev.ev1dent.cagecollection;
 
+import dev.ev1dent.cagecollection.Commands.CommandCage;
 import dev.ev1dent.cagecollection.events.NoSpawnEggs;
 import dev.ev1dent.cagecollection.events.SpawnerBreakEvent;
 import dev.ev1dent.cagecollection.events.SpawnerPlaceEvent;
@@ -17,6 +18,7 @@ public final class CCMain extends JavaPlugin {
     }
 
     public void registerCommands(){
+        this.getCommand("cage").setExecutor(new CommandCage(this));
         addTabCompletion();
     }
 
