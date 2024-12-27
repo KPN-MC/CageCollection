@@ -2,10 +2,7 @@ package dev.ev1dent.cagecollection;
 
 import dev.ev1dent.cagecollection.Commands.CommandCage;
 import dev.ev1dent.cagecollection.Commands.tabCompletion.CageTC;
-import dev.ev1dent.cagecollection.events.NoAnvilRename;
-import dev.ev1dent.cagecollection.events.NoSpawnEggs;
-import dev.ev1dent.cagecollection.events.SpawnerBreakEvent;
-import dev.ev1dent.cagecollection.events.SpawnerPlaceEvent;
+import dev.ev1dent.cagecollection.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,6 +28,8 @@ public final class CCMain extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SpawnerPlaceEvent(this), this);
         Bukkit.getPluginManager().registerEvents(new NoSpawnEggs(), this);
         Bukkit.getPluginManager().registerEvents(new NoAnvilRename(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockEntityExplosions(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBlockExplosions(), this);
     }
 
 
