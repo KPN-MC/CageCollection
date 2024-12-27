@@ -39,7 +39,7 @@ public class SpawnerPlaceEvent implements Listener {
             spawner.setSpawnedType(EntityType.PIG);
         }
         spawner.update();
-        event.getPlayer().sendMessage(Utils.formatMM(mobType + "Spawner placed."));
+        event.getPlayer().sendMessage(Utils.formatMM(mobType + " Spawner placed."));
 
     }
 }
